@@ -11,11 +11,15 @@ var options = {
 
 request(options, function (err, response, body) {
         if(err){
-         console.log('error: ', error);
+         console.log('error: ', err);
         }else {
-         var weather = JSON.parse(body);
-         var message =`Forecast: ${JSON.stringify(weather.properties.periods[0])}`;
-           console.log(message);
+         var info = JSON.parse(body);
+         var temperature =`Today in Plainsboro, it is ${JSON.stringify(info.properties.periods[0].temperature)}F`;
+         var windSpeed = `The windspeed is ${JSON.stringify(info.properties.periods[0].windSpeed)}`;
+         var windDirection = ` in the direction ${JSON.stringify(info.properties.periods[0].windDirection)}`;
+         var shortForecast = `It is ${JSON.stringify(info.properties.periods[0].shortForecast)}`;
+
+          console.log(temperature,shortForecast);
+         console.log(windSpeed,windDirection);
         }
 });
-
