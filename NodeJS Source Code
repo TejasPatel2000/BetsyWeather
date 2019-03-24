@@ -1,6 +1,10 @@
 var request = require('request');
 var url ='https://api.weather.gov/gridpoints/PHI/66,95/forecast';
 
+const express = require('express');
+const app = express();
+
+
 var options = {
         url: 'https://api.weather.gov/gridpoints/PHI/66,95/forecast',
         headers: {
@@ -11,15 +15,18 @@ var options = {
 
 request(options, function (err, response, body) {
         if(err){
-         console.log('error: ', err);
+         console.log('error: ', error);
         }else {
          var info = JSON.parse(body);
-         var temperature =`Today in Plainsboro, it is ${JSON.stringify(info.properties.periods[0].temperature)}F`;
-         var windSpeed = `The windspeed is ${JSON.stringify(info.properties.periods[0].windSpeed)}`;
-         var windDirection = ` in the direction ${JSON.stringify(info.properties.periods[0].windDirection)}`;
-         var shortForecast = `It is ${JSON.stringify(info.properties.periods[0].shortForecast)}`;
+         var temperature =`Today in Plainsboro, it is ${JSON.stringify(info.prope$
+         var windSpeed = `The windspeed is ${JSON.stringify(info.properties.perio$
+         var windDirection = ` in the direction ${JSON.stringify(info.properties.$
+         var shortForecast = `It is ${JSON.stringify(info.properties.periods[0].s$
+         app.get('/', (req,res) =>{
+                res.send(console.log(temperature,shortForecast));
+                res.send(console.log(windSpeed,windDirection));
+        })
 
-          console.log(temperature,shortForecast);
-         console.log(windSpeed,windDirection);
         }
+app.listen(2000,() => console.log('Server running on port 2000'));
 });
