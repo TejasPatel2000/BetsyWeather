@@ -18,15 +18,12 @@ request(options, function (err, response, body) {
          console.log('error: ', error);
         }else {
          var info = JSON.parse(body);
-         var temperature =`Today in Plainsboro, it is ${JSON.stringify(info.prope$
-         var windSpeed = `The windspeed is ${JSON.stringify(info.properties.perio$
-         var windDirection = ` in the direction ${JSON.stringify(info.properties.$
-         var shortForecast = `It is ${JSON.stringify(info.properties.periods[0].s$
+         var msg = `Today in Plainsboro it is ${JSON.stringify(info.properties.periods[0].shortForecast)}. It is ${JSON.stringify(info.properties.periods[0].temperatur$
+
          app.get('/', (req,res) =>{
-                res.send(console.log(temperature,shortForecast));
-                res.send(console.log(windSpeed,windDirection));
+                res.send(msg);
         })
 
         }
-app.listen(2000,() => console.log('Server running on port 2000'));
+app.listen(3000,() => console.log('Server running on port 3000'));
 });
